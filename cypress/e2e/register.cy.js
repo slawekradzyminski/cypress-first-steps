@@ -1,4 +1,5 @@
 import { registerPage } from "../pages/registerPage";
+import { getRandomUser } from "../generators/userGenerator";
 
 describe('Registration Tests', () => {
     beforeEach(() => {
@@ -7,8 +8,8 @@ describe('Registration Tests', () => {
 
     it('successfully registers with valid data', () => {
         // when
-        registerPage.fillAndSubmitRegistrationForm();
-
+        const newUser = getRandomUser();
+        registerPage.fillAndSubmitRegistrationForm(newUser);
         // then
         cy.url().should('include', '/login');
         cy.get('.alert-success').should('contain.text', 'Registration successful');
