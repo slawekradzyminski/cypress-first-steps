@@ -10,6 +10,7 @@ describe('Registration Tests', () => {
         // when
         const newUser = getRandomUser();
         registerPage.fillAndSubmitRegistrationForm(newUser);
+        
         // then
         cy.url().should('include', '/login');
         cy.get('.alert-success').should('contain.text', 'Registration successful');
