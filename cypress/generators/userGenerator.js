@@ -4,7 +4,7 @@ const ensureMinLength = (generator, minLength) => {
   let result;
   let maxAttempts = 10;
   let attempts = 0;
-  
+
   while (attempts < maxAttempts) {
     result = generator();
     if (result.length >= minLength) return result;
@@ -27,7 +27,8 @@ const generateUser = () => {
     password: faker.internet.password(),
     firstName: generateFirstName(),
     lastName: generateLastName(),
-    email: faker.internet.email()
+    email: faker.internet.email(),
+    roles: ["ROLE_ADMIN", "ROLE_CLIENT"]
   };
 };
 

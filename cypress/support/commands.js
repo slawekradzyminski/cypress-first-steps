@@ -7,6 +7,8 @@ Cypress.Commands.add('login', (username, password) => {
             password: password
         }
     }).then((response) => {
+        const token = response.body.token; 
+        cy.wrap(token).as('token');
         window.localStorage.setItem('user', JSON.stringify(response.body));
     });
 
