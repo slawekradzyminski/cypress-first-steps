@@ -1,5 +1,14 @@
 Cypress.Commands.add('login', (username, password) => {
-    cy.visit('http://localhost:8081/login');
-    cy.get('input[name=username]').type(username);
-    cy.get('input[name=password]').type(`${password}{enter}`);
+    cy.request({
+        method: 'POST',
+        url: 'http://localhost:4001/users/signin',
+        body: {
+            username: username,
+            password: password
+        }
+    }).then((response) => {
+        window.localStorage.setItem('user', JSON.stringify(response.body));
+    });
+
+    cy.visit('http://localhost:8081');
 });
