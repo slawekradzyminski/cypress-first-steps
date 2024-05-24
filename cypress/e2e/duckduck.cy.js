@@ -2,7 +2,6 @@
 
 describe('Duck duck go tests', () => {
 
-    // to wykona się przed kazdym testem. Test znajduje się wewnątrz sekcji it('nazwa testu', () => {})
     beforeEach(() => {
       cy.visit('https://duckduckgo.com')
     })

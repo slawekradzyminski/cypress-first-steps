@@ -3,9 +3,12 @@ import { faker } from '@faker-js/faker';
 const ensureMinLength = (generator, minLength) => {
   let result;
   let maxAttempts = 10;
-  for (let i = 0; i < maxAttempts; i++) {
+  let attempts = 0;
+  
+  while (attempts < maxAttempts) {
     result = generator();
     if (result.length >= minLength) return result;
+    attempts++;
   }
   throw new Error('Unable to generate a name of the minimum length');
 };

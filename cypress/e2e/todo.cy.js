@@ -2,7 +2,6 @@
 
 describe('Cypress workshop test suite', () => {
 
-  // to wykona się przed kazdym testem. Test znajduje się wewnątrz sekcji it('nazwa testu', () => {})
   beforeEach(() => {
     cy.visit('https://example.cypress.io/todo')
   })
