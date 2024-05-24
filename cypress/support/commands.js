@@ -14,3 +14,12 @@ Cypress.Commands.add('login', (username, password) => {
 
     cy.visit('http://localhost:8081');
 });
+
+Cypress.Commands.add('register', (user) => {
+    return cy.request({
+        method: 'POST',
+        url: 'http://localhost:4001/users/signup',
+        body: user,
+        failOnStatusCode: false
+    });
+});
