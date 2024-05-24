@@ -20,4 +20,12 @@ describe('Login Page Test', () => {
         cy.get('h1').should('contain', 'Hi Slawomir!')
         cy.get('p').contains("You're logged in! Congratulations :)").should('be.visible')
     });
+
+    it('should navigate to the register page when clicking the register button', () => {
+        loginPage.clickRegister();
+        
+        cy.url().should('include', '/register');
+        cy.get('h2').contains('Register').should('be.visible');
+    });
+
 })

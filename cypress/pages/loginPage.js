@@ -5,7 +5,11 @@ class LoginPage {
         cy.get('input[name="password"]').type(password);
         cy.get('button').contains('Login').click();
     }
-    
+
+    clickRegister() {
+        cy.get('a').contains('Register').click();
+    }
+
 }
 
 export default new LoginPage();
