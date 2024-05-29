@@ -6,7 +6,8 @@ const getRandomUser = () => {
         lastName: faker.person.lastName(),
         username: faker.internet.userName(),
         password: faker.internet.password(),
-        email: faker.internet.email()
+        email: faker.internet.email(),
+        roles: ['ROLE_CLIENT', 'ROLE_ADMIN']
     };
 };
 
