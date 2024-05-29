@@ -11,6 +11,7 @@ describe('Login Test', () => {
     it('successfully logs in with admin credentials', () => {
         LoginPage.attemptLogin('admin', 'admin');
         HomePage.checkGreetingMessage('Hi Slawomir!');
+        
     });
 
     it('displays validation errors for too short username and password', () => {
