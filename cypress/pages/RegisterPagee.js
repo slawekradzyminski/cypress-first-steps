@@ -10,10 +10,6 @@ class RegisterPage {
     submitRegistration() {
         cy.get('form').submit();
     }
-
-    checkRegistrationSuccess() {
-        cy.get('.alert-success').should('contain', 'Registration successful');
-    }
 }
 
 export default new RegisterPage();

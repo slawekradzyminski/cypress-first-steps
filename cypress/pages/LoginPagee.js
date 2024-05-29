@@ -11,6 +11,10 @@ class LoginPage {
         cy.get('input[name="password"]').should('have.class', 'is-invalid');
         cy.get('.invalid-feedback').last().should('contain', 'Required field length is 4 or more');
     }
+
+    checkRegistrationSuccess() {
+        cy.get('.alert-success').should('contain', 'Registration successful');
+    }
 }
 
 export default new LoginPage();

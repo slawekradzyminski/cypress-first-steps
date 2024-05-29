@@ -2,6 +2,7 @@
 
 import RegisterPage from '../pages/RegisterPagee';
 import getRandomUser from '../generators/userGenerator';
+import LoginPage from '../pages/LoginPagee';
 
 describe('Registration Test', () => {
     beforeEach(() => {
@@ -12,6 +13,6 @@ describe('Registration Test', () => {
         const user = getRandomUser();
         RegisterPage.fillRegistrationForm(user);
         RegisterPage.submitRegistration();
-        RegisterPage.checkRegistrationSuccess();
+        LoginPage.checkRegistrationSuccess();
     });
 });
