@@ -9,17 +9,12 @@ describe('Login Test', () => {
     });
 
     it('successfully logs in with admin credentials', () => {
-        LoginPage.fillUsername('admin');
-        LoginPage.fillPassword('admin');
-        LoginPage.submit();
+        LoginPage.attemptLogin('admin', 'admin');
         HomePage.checkGreetingMessage('Hi Slawomir!');
     });
 
     it('displays validation errors for too short username and password', () => {
-        LoginPage.fillUsername('adm');
-        LoginPage.fillPassword('adm');
-        LoginPage.submit();
+        LoginPage.attemptLogin('adm', 'adm');
         LoginPage.checkValidationMessage();
     });
 });
-
