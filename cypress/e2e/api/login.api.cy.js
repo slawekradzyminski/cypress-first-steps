@@ -2,14 +2,7 @@
 
 describe('User Login API Test', () => {
   it('successfully logs in and returns a 200 status with a valid JWT token', () => {
-    cy.request({
-      method: 'POST',
-      url: 'http://localhost:4001/users/signin',
-      body: {
-        username: 'admin',
-        password: 'admin'
-      }
-    }).then((response) => {
+    cy.login('admin', 'admin').then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('username', 'admin');
       expect(response.body).to.have.property('roles').to.deep.equal(['ROLE_ADMIN', 'ROLE_CLIENT']);
@@ -21,15 +14,7 @@ describe('User Login API Test', () => {
   });
 
   it('returns a 422 status when incorrect credentials are provided', () => {
-    cy.request({
-      method: 'POST',
-      url: 'http://localhost:4001/users/signin',
-      failOnStatusCode: false, // Prevent Cypress from failing the test on non-2xx status codes
-      body: {
-        username: 'wrongUser',
-        password: 'wrongPass'
-      }
-    }).then((response) => {
+    cy.login('wrongUser', 'wrongPass').then((response) => {
       expect(response.status).to.eq(422);
       expect(response.body).to.have.property('timestamp');
       expect(response.body).to.have.property('status', 422);
@@ -40,15 +25,7 @@ describe('User Login API Test', () => {
   });
 
   it('returns a 400 status when username and password are too short', () => {
-    cy.request({
-      method: 'POST',
-      url: 'http://localhost:4001/users/signin',
-      failOnStatusCode: false,
-      body: {
-        username: 'usr',
-        password: 'pwd'
-      }
-    }).then((response) => {
+    cy.login('usr', 'pwd').then((response) => {
       expect(response.status).to.eq(400);
       expect(response.body).to.have.property('username', 'Minimum username length: 4 characters');
       expect(response.body).to.have.property('password', 'Minimum password length: 4 characters');
@@ -56,15 +33,7 @@ describe('User Login API Test', () => {
   });
 
   it('returns a 400 status when username or password is empty', () => {
-    cy.request({
-      method: 'POST',
-      url: 'http://localhost:4001/users/signin',
-      failOnStatusCode: false,
-      body: {
-        username: '',
-        password: ''
-      }
-    }).then((response) => {
+    cy.login('', '').then((response) => {
       expect(response.status).to.eq(400);
       expect(response.body).to.have.property('username', 'Minimum username length: 4 characters');
       expect(response.body).to.have.property('password', 'Minimum password length: 4 characters');
